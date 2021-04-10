@@ -40,7 +40,7 @@
     <ClCompile Include="chesspiece.cpp" />
     <ClCompile Include="chessplayer.cpp" />
     <ClCompile Include="king.cpp" />
-    <ClCompile Include="Knight.cpp" />
+    <ClCompile Include="knight.cpp" />
     <ClCompile Include="pawn.cpp" />
     <ClCompile Include="queen.cpp" />
     <ClCompile Include="rook.cpp" />

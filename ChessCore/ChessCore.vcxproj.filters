@@ -89,7 +89,7 @@
     <ClCompile Include="pawn.cpp">
       <Filter>Source Files\pieces</Filter>
     </ClCompile>
-    <ClCompile Include="Knight.cpp">
+    <ClCompile Include="knight.cpp">
       <Filter>Source Files\pieces</Filter>
     </ClCompile>
   </ItemGroup>
