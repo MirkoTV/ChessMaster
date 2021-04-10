@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chesscore.h" />
+    <ClInclude Include="chesspiece.h" />
     <ClInclude Include="dll.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="chesscore.cpp" />
+    <ClCompile Include="chesspiece.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

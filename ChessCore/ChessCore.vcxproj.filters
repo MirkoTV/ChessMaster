@@ -21,9 +21,15 @@
     <ClInclude Include="dll.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="chesspiece.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="chesscore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="chesspiece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
