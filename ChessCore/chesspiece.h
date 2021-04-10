@@ -2,5 +2,5 @@
 
 class ChessPiece {
 public:
-	void print() const noexcept;
+	virtual void print() const noexcept;
 };

@@ -19,19 +19,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bishop.h" />
     <ClInclude Include="chessboard.h" />
     <ClInclude Include="chesscore.h" />
     <ClInclude Include="chessgame.h" />
     <ClInclude Include="chesspiece.h" />
     <ClInclude Include="chessplayer.h" />
     <ClInclude Include="dll.h" />
+    <ClInclude Include="king.h" />
+    <ClInclude Include="knight.h" />
+    <ClInclude Include="pawn.h" />
+    <ClInclude Include="queen.h" />
+    <ClInclude Include="rook.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bishop.cpp" />
     <ClCompile Include="chessboard.cpp" />
     <ClCompile Include="chesscore.cpp" />
     <ClCompile Include="chessgame.cpp" />
     <ClCompile Include="chesspiece.cpp" />
     <ClCompile Include="chessplayer.cpp" />
+    <ClCompile Include="king.cpp" />
+    <ClCompile Include="Knight.cpp" />
+    <ClCompile Include="pawn.cpp" />
+    <ClCompile Include="queen.cpp" />
+    <ClCompile Include="rook.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

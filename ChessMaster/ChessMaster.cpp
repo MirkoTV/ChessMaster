@@ -16,7 +16,7 @@ int main()
 
     std::cout << "Please introduce Player A Name (Player A): ";
     std::getline(std::cin >> std::ws, playerAName);
-    std::cout << "Please introduce Player A Name (Player B): ";
+    std::cout << "Please introduce Player B Name (Player B): ";
     std::getline(std::cin >> std::ws, playerBName);
 
 
