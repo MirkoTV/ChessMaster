@@ -3,7 +3,11 @@
 #include "chessgame.h"
 
 ChessGame::ChessGame()
-	: playerA { ChessPlayer { "Player A" } }, playerB{ ChessPlayer { "Player B" } }  {
+	: ChessGame::ChessGame("Player A", "Player B") {
+}
+
+ChessGame::ChessGame(const std::string& playerAName, const std::string& playerBName) 
+	: playerA{ ChessPlayer { playerAName } }, playerB{ ChessPlayer { playerBName } }  {
 	this->playerA.print();
 	this->playerB.print();
 
