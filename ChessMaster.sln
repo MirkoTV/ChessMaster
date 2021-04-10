@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChessMaster", "ChessMaster\ChessMaster.vcxproj", "{2B8E9D3F-C6C2-44A3-9733-7A6980B4E9E2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChessCore", "ChessCore\ChessCore.vcxproj", "{CD7BE5F2-8B49-42B9-8101-5967C3785480}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{2B8E9D3F-C6C2-44A3-9733-7A6980B4E9E2}.Release|x64.Build.0 = Release|x64
 		{2B8E9D3F-C6C2-44A3-9733-7A6980B4E9E2}.Release|x86.ActiveCfg = Release|Win32
 		{2B8E9D3F-C6C2-44A3-9733-7A6980B4E9E2}.Release|x86.Build.0 = Release|Win32
+		{CD7BE5F2-8B49-42B9-8101-5967C3785480}.Debug|x64.ActiveCfg = Debug|x64
+		{CD7BE5F2-8B49-42B9-8101-5967C3785480}.Debug|x64.Build.0 = Debug|x64
+		{CD7BE5F2-8B49-42B9-8101-5967C3785480}.Debug|x86.ActiveCfg = Debug|Win32
+		{CD7BE5F2-8B49-42B9-8101-5967C3785480}.Debug|x86.Build.0 = Debug|Win32
+		{CD7BE5F2-8B49-42B9-8101-5967C3785480}.Release|x64.ActiveCfg = Release|x64
+		{CD7BE5F2-8B49-42B9-8101-5967C3785480}.Release|x64.Build.0 = Release|x64
+		{CD7BE5F2-8B49-42B9-8101-5967C3785480}.Release|x86.ActiveCfg = Release|Win32
+		{CD7BE5F2-8B49-42B9-8101-5967C3785480}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
