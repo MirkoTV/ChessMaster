@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "chesscore.h"
-#include "chessboard.h"
+#include "chessgame.h"
 
 int main()
 {
@@ -10,7 +10,7 @@ int main()
 
     std::cout << result << "\n";
 
-    ChessBoard board;
+    ChessGame game;
 
-    board.print();
+    game.print();
 }

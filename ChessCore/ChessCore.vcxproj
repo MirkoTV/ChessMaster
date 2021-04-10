@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClInclude Include="chessboard.h" />
     <ClInclude Include="chesscore.h" />
+    <ClInclude Include="chessgame.h" />
     <ClInclude Include="chesspiece.h" />
     <ClInclude Include="dll.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="chessboard.cpp" />
     <ClCompile Include="chesscore.cpp" />
+    <ClCompile Include="chessgame.cpp" />
     <ClCompile Include="chesspiece.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

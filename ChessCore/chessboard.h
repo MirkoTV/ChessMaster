@@ -3,7 +3,7 @@
 #include "dll.h"
 #include "chesspiece.h"
 
-class CHESSCORE_EXPORT ChessBoard{
+class ChessBoard {
 	ChessPiece piece;
 public:
 	ChessBoard();
