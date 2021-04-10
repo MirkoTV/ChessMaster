@@ -2,7 +2,11 @@
 
 #include "chessgame.h"
 
-ChessGame::ChessGame() {
+ChessGame::ChessGame()
+	: playerA { ChessPlayer { "Player A" } }, playerB{ ChessPlayer { "Player B" } }  {
+	this->playerA.print();
+	this->playerB.print();
+
 	this->board.print();
 }
 

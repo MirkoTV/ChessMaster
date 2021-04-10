@@ -23,6 +23,7 @@
     <ClInclude Include="chesscore.h" />
     <ClInclude Include="chessgame.h" />
     <ClInclude Include="chesspiece.h" />
+    <ClInclude Include="chessplayer.h" />
     <ClInclude Include="dll.h" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
     <ClCompile Include="chesscore.cpp" />
     <ClCompile Include="chessgame.cpp" />
     <ClCompile Include="chesspiece.cpp" />
+    <ClCompile Include="chessplayer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
