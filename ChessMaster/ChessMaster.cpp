@@ -2,7 +2,6 @@
 
 #include "chesscore.h"
 #include "chessboard.h"
-#include "chesspiece.h"
 
 int main()
 {
@@ -10,10 +9,6 @@ int main()
     std::cout << "Hello World!\n";
 
     std::cout << result << "\n";
-
-    ChessPiece piece;
-
-    piece.print();
 
     ChessBoard board;
 
