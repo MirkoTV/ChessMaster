@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="chessboard.h" />
     <ClInclude Include="chesscore.h" />
     <ClInclude Include="chesspiece.h" />
     <ClInclude Include="dll.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="chessboard.cpp" />
     <ClCompile Include="chesscore.cpp" />
     <ClCompile Include="chesspiece.cpp" />
   </ItemGroup>

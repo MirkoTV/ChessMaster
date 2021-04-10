@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "chesscore.h"
+#include "chessboard.h"
 #include "chesspiece.h"
 
 int main()
@@ -13,4 +14,8 @@ int main()
     ChessPiece piece;
 
     piece.print();
+
+    ChessBoard board;
+
+    board.print();
 }

@@ -3,5 +3,5 @@
 #include "chesspiece.h"
 
 void ChessPiece::print() const noexcept {
-	std::cout << "I am a piece";
+	std::cout << "I am a piece\n";
 }
