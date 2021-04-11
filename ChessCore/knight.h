@@ -2,6 +2,6 @@
 
 #include "chesspiece.h"
 
-class Knight: ChessPiece {
+class Knight: public ChessPiece {
 	void print() const noexcept override;
 };
