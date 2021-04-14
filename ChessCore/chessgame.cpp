@@ -7,13 +7,16 @@ ChessGame::ChessGame()
 }
 
 ChessGame::ChessGame(const std::string& playerAName, const std::string& playerBName) 
-	: playerA{ ChessPlayer { playerAName } }, playerB{ ChessPlayer { playerBName } }  {
-	this->playerA.print();
-	this->playerB.print();
+	: playerA{ ChessPlayer{ playerAName } }, playerB{ ChessPlayer{ playerBName } } {
 
-	this->board.print();
+	this->board = ChessBoard{ this->playerA, this->playerB };
 }
 
 void ChessGame::print() const noexcept {
 	std::cout << "I am a new game!\n";
+
+	this->playerA.print();
+	this->playerB.print();
+
+	this->board.print();
 }
