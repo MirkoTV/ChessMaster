@@ -10,5 +10,5 @@ void King::print() const noexcept {
 }
 
 std::string King::to_string() {
-	return " KI ";
+	return "KI";
 }

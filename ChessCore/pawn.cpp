@@ -10,5 +10,5 @@ void Pawn::print() const noexcept {
 }
 
 std::string Pawn::to_string() {
-	return " PA ";
+	return "PA";
 }

@@ -10,5 +10,5 @@ void Queen::print() const noexcept {
 }
 
 std::string Queen::to_string() {
-	return " QU ";
+	return "QU";
 }

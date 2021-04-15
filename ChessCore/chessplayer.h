@@ -7,4 +7,5 @@ class ChessPlayer {
 public:
 	ChessPlayer(const std::string& name);
 	void print() const noexcept;
+	std::string getNameTag() const noexcept;
 };

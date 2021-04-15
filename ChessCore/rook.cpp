@@ -10,5 +10,5 @@ void Rook::print() const noexcept {
 }
 
 std::string Rook::to_string() {
-	return " RO ";
+	return "RO";
 }

@@ -10,5 +10,5 @@ void Knight::print() const noexcept {
 }
 
 std::string Knight::to_string() {
-	return " KN ";
+	return "KN";
 }

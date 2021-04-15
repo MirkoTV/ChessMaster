@@ -10,5 +10,5 @@ void Bishop::print() const noexcept  {
 }
 
 std::string Bishop::to_string() {
-	return " BI ";
+	return "BI";
 }
