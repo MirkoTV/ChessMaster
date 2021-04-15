@@ -17,23 +17,23 @@ ChessBoard::ChessBoard()
 	: ChessBoard::ChessBoard(ChessPlayer{ "Player A" }, ChessPlayer{ "Player B"}) {}
 
 ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB) {
-	this->pieces[0][0] = std::make_unique<Rook>(playerA);
-	this->pieces[1][0] = std::make_unique<Knight>(playerA);
-	this->pieces[2][0] = std::make_unique<Bishop>(playerA);
-	this->pieces[3][0] = std::make_unique<Queen>(playerA);
-	this->pieces[4][0] = std::make_unique<King>(playerA);
-	this->pieces[5][0] = std::make_unique<Bishop>(playerA);
-	this->pieces[6][0] = std::make_unique<Knight>(playerA);
-	this->pieces[7][0] = std::make_unique<Rook>(playerA);
+	this->pieces[0][0] = std::make_shared<Rook>(playerA);
+	this->pieces[1][0] = std::make_shared<Knight>(playerA);
+	this->pieces[2][0] = std::make_shared<Bishop>(playerA);
+	this->pieces[3][0] = std::make_shared<Queen>(playerA);
+	this->pieces[4][0] = std::make_shared<King>(playerA);
+	this->pieces[5][0] = std::make_shared<Bishop>(playerA);
+	this->pieces[6][0] = std::make_shared<Knight>(playerA);
+	this->pieces[7][0] = std::make_shared<Rook>(playerA);
 
-	this->pieces[0][1] = std::make_unique<Pawn>(playerA);
-	this->pieces[1][1] = std::make_unique<Pawn>(playerA);
-	this->pieces[2][1] = std::make_unique<Pawn>(playerA);
-	this->pieces[3][1] = std::make_unique<Pawn>(playerA);
-	this->pieces[4][1] = std::make_unique<Pawn>(playerA);
-	this->pieces[5][1] = std::make_unique<Pawn>(playerA);
-	this->pieces[6][1] = std::make_unique<Pawn>(playerA);
-	this->pieces[7][1] = std::make_unique<Pawn>(playerA);
+	this->pieces[0][1] = std::make_shared<Pawn>(playerA);
+	this->pieces[1][1] = std::make_shared<Pawn>(playerA);
+	this->pieces[2][1] = std::make_shared<Pawn>(playerA);
+	this->pieces[3][1] = std::make_shared<Pawn>(playerA);
+	this->pieces[4][1] = std::make_shared<Pawn>(playerA);
+	this->pieces[5][1] = std::make_shared<Pawn>(playerA);
+	this->pieces[6][1] = std::make_shared<Pawn>(playerA);
+	this->pieces[7][1] = std::make_shared<Pawn>(playerA);
 
 	this->pieces[0][2] = nullptr;
 	this->pieces[1][2] = nullptr;
@@ -71,23 +71,23 @@ ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB) {
 	this->pieces[6][5] = nullptr;
 	this->pieces[7][5] = nullptr;
 
-	this->pieces[0][6] = std::make_unique<Pawn>(playerB);
-	this->pieces[1][6] = std::make_unique<Pawn>(playerB);
-	this->pieces[2][6] = std::make_unique<Pawn>(playerB);
-	this->pieces[3][6] = std::make_unique<Pawn>(playerB);
-	this->pieces[4][6] = std::make_unique<Pawn>(playerB);
-	this->pieces[5][6] = std::make_unique<Pawn>(playerB);
-	this->pieces[6][6] = std::make_unique<Pawn>(playerB);
-	this->pieces[7][6] = std::make_unique<Pawn>(playerB);
-
-	this->pieces[0][7] = std::make_unique<Rook>(playerB);
-	this->pieces[1][7] = std::make_unique<Knight>(playerB);
-	this->pieces[2][7] = std::make_unique<Bishop>(playerB);
-	this->pieces[3][7] = std::make_unique<Queen>(playerB);
-	this->pieces[4][7] = std::make_unique<King>(playerB);
-	this->pieces[5][7] = std::make_unique<Bishop>(playerB);
-	this->pieces[6][7] = std::make_unique<Knight>(playerB);
-	this->pieces[7][7] = std::make_unique<Rook>(playerB);
+	this->pieces[0][6] = std::make_shared<Pawn>(playerB);
+	this->pieces[1][6] = std::make_shared<Pawn>(playerB);
+	this->pieces[2][6] = std::make_shared<Pawn>(playerB);
+	this->pieces[3][6] = std::make_shared<Pawn>(playerB);
+	this->pieces[4][6] = std::make_shared<Pawn>(playerB);
+	this->pieces[5][6] = std::make_shared<Pawn>(playerB);
+	this->pieces[6][6] = std::make_shared<Pawn>(playerB);
+	this->pieces[7][6] = std::make_shared<Pawn>(playerB);
+							  
+	this->pieces[0][7] = std::make_shared<Rook>(playerB);
+	this->pieces[1][7] = std::make_shared<Knight>(playerB);
+	this->pieces[2][7] = std::make_shared<Bishop>(playerB);
+	this->pieces[3][7] = std::make_shared<Queen>(playerB);
+	this->pieces[4][7] = std::make_shared<King>(playerB);
+	this->pieces[5][7] = std::make_shared<Bishop>(playerB);
+	this->pieces[6][7] = std::make_shared<Knight>(playerB);
+	this->pieces[7][7] = std::make_shared<Rook>(playerB);
 }
 
 void ChessBoard::print() const noexcept {
@@ -108,4 +108,11 @@ void ChessBoard::print() const noexcept {
 		std::cout << "|\n";
 	}
 	std::cout << "-------------------------------------------------\n";
+}
+
+bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
+	this->pieces[finalX][finalY] = this->pieces[initialX][initialY];
+	this->pieces[initialX][initialY] = nullptr;
+
+	return true;
 }

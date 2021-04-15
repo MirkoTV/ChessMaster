@@ -23,4 +23,27 @@ int main()
     ChessGame game { playerAName, playerBName };
 
     game.print();
+
+
+
+    int initialX;
+    int initialY;
+    int finalX;
+    int finalY;
+
+    std::cout << "It is player " << playerAName << ". Please introduce x, y initial position:\n";
+    std::cout << "X: ";
+    std::cin >> initialX;
+    std::cout << "Y: ";
+    std::cin >> initialY;
+
+    std::cout << "It is player " << playerAName << ". Please introduce x, y final position:\n";
+    std::cout << "X: ";
+    std::cin >> finalX;
+    std::cout << "Y: ";
+    std::cin >> finalY;
+
+    game.movePlayerAPiece(initialX, initialY, finalX, finalY);
+
+    game.print();
 }

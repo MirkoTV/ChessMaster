@@ -13,10 +13,9 @@ ChessGame::ChessGame(const std::string& playerAName, const std::string& playerBN
 }
 
 void ChessGame::print() const noexcept {
-	std::cout << "I am a new game!\n";
-
-	this->playerA.print();
-	this->playerB.print();
-
 	this->board.print();
+}
+
+bool ChessGame::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
+	return this->board.movePlayerAPiece(initialX, initialY, finalX, finalY);
 }

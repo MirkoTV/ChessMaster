@@ -11,10 +11,11 @@
 #include "pawn.h"
 
 class ChessBoard {
-	std::unique_ptr<ChessPiece> pieces[8][8];
+	std::shared_ptr<ChessPiece> pieces[8][8];
 
 public:
 	ChessBoard();
 	ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB);
 	void print() const noexcept;
+	bool movePlayerAPiece(int initialX, int initialY, int finalX, int finalY);
 };

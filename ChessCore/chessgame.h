@@ -13,4 +13,5 @@ public:
 	ChessGame();
 	ChessGame(const std::string& playerAName, const std::string& playerBName);
 	void print() const noexcept;
+	bool movePlayerAPiece(int initialX, int initialY, int finalX, int finalY);
 };
