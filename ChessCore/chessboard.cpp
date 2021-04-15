@@ -111,6 +111,14 @@ void ChessBoard::print() const noexcept {
 }
 
 bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
+	return this->movePlayerPiece(initialX, initialY, finalX, finalY);
+}
+
+bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int finalY) {
+	return this->movePlayerPiece(initialX, initialY, finalX, finalY);
+}
+
+bool ChessBoard::movePlayerPiece(int initialX, int initialY, int finalX, int finalY) {
 	this->pieces[finalX][finalY] = this->pieces[initialX][initialY];
 	this->pieces[initialX][initialY] = nullptr;
 

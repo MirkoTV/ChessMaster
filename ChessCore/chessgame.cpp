@@ -19,3 +19,7 @@ void ChessGame::print() const noexcept {
 bool ChessGame::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
 	return this->board.movePlayerAPiece(initialX, initialY, finalX, finalY);
 }
+
+bool ChessGame::movePlayerBPiece(int initialX, int initialY, int finalX, int finalY) {
+	return this->board.movePlayerBPiece(initialX, initialY, finalX, finalY);
+}

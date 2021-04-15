@@ -13,9 +13,11 @@
 class ChessBoard {
 	std::shared_ptr<ChessPiece> pieces[8][8];
 
+	bool movePlayerPiece(int initialX, int initialY, int finalX, int finalY);
 public:
 	ChessBoard();
 	ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB);
 	void print() const noexcept;
 	bool movePlayerAPiece(int initialX, int initialY, int finalX, int finalY);
+	bool movePlayerBPiece(int initialX, int initialY, int finalX, int finalY);
 };

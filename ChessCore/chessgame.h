@@ -14,4 +14,5 @@ public:
 	ChessGame(const std::string& playerAName, const std::string& playerBName);
 	void print() const noexcept;
 	bool movePlayerAPiece(int initialX, int initialY, int finalX, int finalY);
+	bool movePlayerBPiece(int initialX, int initialY, int finalX, int finalY);
 };

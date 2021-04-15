@@ -24,26 +24,33 @@ int main()
 
     game.print();
 
-
+    bool isPlayerATurn = true;
     while (true) {
         int initialX;
         int initialY;
         int finalX;
         int finalY;
 
-        std::cout << "It is player " << playerAName << ". Please introduce x, y initial position:\n";
+        std::cout << "It is player " << (isPlayerATurn ? playerAName : playerBName) << ". Please introduce x, y initial position:\n";
         std::cout << "X: ";
         std::cin >> initialX;
         std::cout << "Y: ";
         std::cin >> initialY;
 
-        std::cout << "It is player " << playerAName << ". Please introduce x, y final position:\n";
+        std::cout << "It is player " << (isPlayerATurn ? playerAName : playerBName) << ". Please introduce x, y final position:\n";
         std::cout << "X: ";
         std::cin >> finalX;
         std::cout << "Y: ";
         std::cin >> finalY;
 
-        game.movePlayerAPiece(initialX, initialY, finalX, finalY);
+        if (isPlayerATurn) {
+            game.movePlayerAPiece(initialX, initialY, finalX, finalY);
+        }
+        else {
+            game.movePlayerBPiece(initialX, initialY, finalX, finalY);
+        }
+        
+        isPlayerATurn = !isPlayerATurn;
 
         game.print();
     }
