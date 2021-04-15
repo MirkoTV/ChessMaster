@@ -8,3 +8,7 @@ Queen::Queen(const ChessPlayer& owner)
 void Queen::print() const noexcept {
 	std::cout << "I am a queen\n";
 }
+
+std::string Queen::to_string() {
+	return " QU ";
+}

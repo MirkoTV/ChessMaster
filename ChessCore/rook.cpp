@@ -8,3 +8,7 @@ Rook::Rook(const ChessPlayer& owner)
 void Rook::print() const noexcept {
 	std::cout << "I am a rook\n";
 }
+
+std::string Rook::to_string() {
+	return " RO ";
+}

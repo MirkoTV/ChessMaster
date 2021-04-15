@@ -7,4 +7,5 @@ class ChessPiece {
 public:
 	ChessPiece(const ChessPlayer& owner);
 	virtual void print() const noexcept;
+	virtual std::string to_string();
 };

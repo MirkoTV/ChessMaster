@@ -8,3 +8,7 @@ Knight::Knight(const ChessPlayer& owner)
 void Knight::print() const noexcept {
 	std::cout << "I am a knight\n";
 }
+
+std::string Knight::to_string() {
+	return " KN ";
+}

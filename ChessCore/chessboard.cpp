@@ -95,13 +95,17 @@ void ChessBoard::print() const noexcept {
 
 	std::cout << "These pieces in the board are\n";
 	for (int j = 0; j < BOARD_Y_SIZE; j++) {
+	std::cout << "-----------------------------------------\n";
 		for (int i = 0; i < BOARD_X_SIZE; i++) {
+			std::cout << "|";
 			if (this->pieces[i][j] == nullptr) {
-				std::cout << "NULL\n";
+				std::cout << "    ";
 			}
 			else {
-				this->pieces[i][j]->print();
+				std::cout << this->pieces[i][j]->to_string();
 			}
 		}
+		std::cout << "|\n";
 	}
+	std::cout << "-----------------------------------------\n";
 }
