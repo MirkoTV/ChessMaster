@@ -16,3 +16,7 @@ std::string ChessPiece::to_string_by_player() {
 std::string ChessPiece::to_string() {
 	return "PI";
 }
+
+bool ChessPiece::is_king() const noexcept {
+	return false;
+}

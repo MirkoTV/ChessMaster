@@ -21,7 +21,7 @@ ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB) {
 	this->pieces[1][0] = std::make_shared<Knight>(playerA);
 	this->pieces[2][0] = std::make_shared<Bishop>(playerA);
 	this->pieces[3][0] = std::make_shared<Queen>(playerA);
-	this->pieces[4][0] = std::make_shared<King>(playerA);
+	this->pieces[this->kingAPos[0]][this->kingAPos[1]] = std::make_shared<King>(playerA);
 	this->pieces[5][0] = std::make_shared<Bishop>(playerA);
 	this->pieces[6][0] = std::make_shared<Knight>(playerA);
 	this->pieces[7][0] = std::make_shared<Rook>(playerA);
@@ -84,7 +84,7 @@ ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB) {
 	this->pieces[1][7] = std::make_shared<Knight>(playerB);
 	this->pieces[2][7] = std::make_shared<Bishop>(playerB);
 	this->pieces[3][7] = std::make_shared<Queen>(playerB);
-	this->pieces[4][7] = std::make_shared<King>(playerB);
+	this->pieces[this->kingBPos[0]][this->kingBPos[1]] = std::make_shared<King>(playerB);
 	this->pieces[5][7] = std::make_shared<Bishop>(playerB);
 	this->pieces[6][7] = std::make_shared<Knight>(playerB);
 	this->pieces[7][7] = std::make_shared<Rook>(playerB);
@@ -108,14 +108,31 @@ void ChessBoard::print() const noexcept {
 		std::cout << "|\n";
 	}
 	std::cout << "-------------------------------------------------\n";
+
+	std::cout << "King A position is: [" << this->kingAPos[0] << ", " << this->kingAPos[1] << "]\n";
+	std::cout << "King B position is: [" << this->kingBPos[0] << ", " << this->kingBPos[1] << "]\n";
 }
 
 bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
-	return this->movePlayerPiece(initialX, initialY, finalX, finalY);
+	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY);
+
+	if (result && this->pieces[finalX][finalY]->is_king()) {
+		this->kingAPos[0] = finalX;
+		this->kingAPos[1] = finalY;
+	}
+
+	return result;
 }
 
 bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int finalY) {
-	return this->movePlayerPiece(initialX, initialY, finalX, finalY);
+	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY);
+
+	if (result && this->pieces[finalX][finalY]->is_king()) {
+		this->kingBPos[0] = finalX;
+		this->kingBPos[1] = finalY;
+	}
+
+	return result;
 }
 
 bool ChessBoard::movePlayerPiece(int initialX, int initialY, int finalX, int finalY) {
