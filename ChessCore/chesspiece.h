@@ -11,4 +11,5 @@ public:
 	virtual std::string to_string();
 	virtual bool is_king() const noexcept;
 	virtual bool can_capture_piece_at(int posX, int posY) = 0;
+	virtual bool is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY) = 0;
 };

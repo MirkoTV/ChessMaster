@@ -16,3 +16,7 @@ std::string Pawn::to_string() {
 bool Pawn::can_capture_piece_at(int posX, int posY) {
 	return false;
 }
+
+bool Pawn::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY) {
+	return true;
+}

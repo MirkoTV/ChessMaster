@@ -16,3 +16,7 @@ std::string Knight::to_string() {
 bool Knight::can_capture_piece_at(int posX, int posY) {
 	return false;
 }
+
+bool Knight::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY) {
+	return true;
+}

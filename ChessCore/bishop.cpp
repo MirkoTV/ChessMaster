@@ -16,3 +16,7 @@ std::string Bishop::to_string() {
 bool Bishop::can_capture_piece_at(int posX, int posY) {
 	return false;
 }
+
+bool Bishop::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY) {
+	return true;
+}

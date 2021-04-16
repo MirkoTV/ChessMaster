@@ -16,3 +16,7 @@ std::string Queen::to_string() {
 bool Queen::can_capture_piece_at(int posX, int posY) {
 	return false;
 }
+
+bool Queen::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY) {
+	return true;
+}

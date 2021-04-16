@@ -183,6 +183,12 @@ bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int fi
 /* Private Methods */
 
 bool ChessBoard::movePlayerPiece(int initialX, int initialY, int finalX, int finalY) {
+
+	if (!this->pieces[initialX][initialY]->is_valid_movement(initialX, initialY, finalX, finalY)) {
+		std::cout << "############ This piece cannot be moved to this new position\n";
+		return false;
+	}
+
 	this->pieces[finalX][finalY] = this->pieces[initialX][initialY];
 	this->pieces[initialX][initialY] = nullptr;
 
