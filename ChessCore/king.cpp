@@ -16,3 +16,7 @@ std::string King::to_string() {
 bool King::is_king() const noexcept {
 	return true;
 }
+
+bool King::can_capture_piece_at(int posX, int posY) {
+	return false;
+}

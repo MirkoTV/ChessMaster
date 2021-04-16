@@ -12,3 +12,7 @@ void Bishop::print() const noexcept  {
 std::string Bishop::to_string() {
 	return "BI";
 }
+
+bool Bishop::can_capture_piece_at(int posX, int posY) {
+	return false;
+}

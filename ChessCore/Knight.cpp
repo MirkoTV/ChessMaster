@@ -12,3 +12,7 @@ void Knight::print() const noexcept {
 std::string Knight::to_string() {
 	return "KN";
 }
+
+bool Knight::can_capture_piece_at(int posX, int posY) {
+	return false;
+}

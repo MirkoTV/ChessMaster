@@ -8,4 +8,5 @@ public:
 	void print() const noexcept override;
 	std::string to_string() override;
 	bool is_king() const noexcept override;
+	bool can_capture_piece_at(int posX, int posY) override;
 };

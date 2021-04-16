@@ -12,3 +12,7 @@ void Queen::print() const noexcept {
 std::string Queen::to_string() {
 	return "QU";
 }
+
+bool Queen::can_capture_piece_at(int posX, int posY) {
+	return false;
+}

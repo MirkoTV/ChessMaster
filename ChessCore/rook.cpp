@@ -12,3 +12,7 @@ void Rook::print() const noexcept {
 std::string Rook::to_string() {
 	return "RO";
 }
+
+bool Rook::can_capture_piece_at(int posX, int posY) {
+	return false;
+}

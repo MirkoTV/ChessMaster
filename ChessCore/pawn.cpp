@@ -12,3 +12,7 @@ void Pawn::print() const noexcept {
 std::string Pawn::to_string() {
 	return "PA";
 }
+
+bool Pawn::can_capture_piece_at(int posX, int posY) {
+	return false;
+}
