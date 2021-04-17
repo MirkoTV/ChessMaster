@@ -28,3 +28,7 @@ bool ChessPiece::is_king() const noexcept {
 bool ChessPiece::is_pawn() const noexcept {
 	return false;
 }
+
+bool ChessPiece::is_knight() const noexcept {
+	return false;
+}

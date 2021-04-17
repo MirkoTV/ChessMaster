@@ -219,6 +219,8 @@ bool ChessBoard::isPlayerBInCheck() {
 std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int posY) {
 	std::vector<std::tuple<int, int>> result;
 
+	if (this->pieces[posX][posY] == nullptr) return result;
+
 	for (int j = 0; j < BOARD_Y_SIZE; j++) {
 		for (int i = 0; i < BOARD_X_SIZE; i++) {
 			bool isPositionTaken = this->pieces[i][j] != nullptr;
@@ -230,7 +232,7 @@ std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int
 			if (this->pieces[posX][posY]->is_pawn() &&
 				!ChessBoard::is_forward_movement(this->pieces[posX][posY], posX, posY, i, j)) continue;
 
-			if (ChessBoard::existsPieceInTheMiddle(posX, posY, i, j)) continue;
+			if (!this->pieces[posX][posY]->is_knight() && ChessBoard::existsPieceInTheMiddle(posX, posY, i, j)) continue;
 			
 			result.push_back(std::tuple<int, int>(i, j));
 		}
