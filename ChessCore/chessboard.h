@@ -1,6 +1,8 @@
 #pragma once
 
 #include <list>
+#include <vector>
+#include <tuple>
 
 #include "dll.h"
 #include "chesspiece.h"
@@ -26,10 +28,13 @@ class ChessBoard {
 
 	bool isPlayerAInCheck();
 	bool isPlayerBInCheck();
+	bool is_forward_movement(std::shared_ptr<ChessPiece>& piece, int& initialX, int& initialY, int& finalX, int& finalY);
+
 public:
 	ChessBoard();
 	ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB);
 	void print() const noexcept;
 	bool movePlayerAPiece(int initialX, int initialY, int finalX, int finalY);
 	bool movePlayerBPiece(int initialX, int initialY, int finalX, int finalY);
+	std::vector<std::tuple<int, int>> getPossibleMovements(int posX, int posY);
 };

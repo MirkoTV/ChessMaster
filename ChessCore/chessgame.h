@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include <tuple>
 
 #include "dll.h"
 #include "chessplayer.h"
@@ -15,4 +17,5 @@ public:
 	void print() const noexcept;
 	bool movePlayerAPiece(int initialX, int initialY, int finalX, int finalY);
 	bool movePlayerBPiece(int initialX, int initialY, int finalX, int finalY);
+	std::vector<std::tuple<int, int>> getPossibleMovements(int posX, int posY);
 };

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <tuple>
 
 #include "chesscore.h"
 #include "chessgame.h"
@@ -36,6 +38,13 @@ int main()
         std::cin >> initialX;
         std::cout << "Y: ";
         std::cin >> initialY;
+
+        std::vector<std::tuple<int, int>> possibleMovements = game.getPossibleMovements(initialX, initialY);
+
+        std::cout << "Possible movements for this piece are:\n";
+        for (auto const &pos : possibleMovements) {
+            std::cout << "- " << std::get<0>(pos) << ", " << std::get<1>(pos) << "\n";
+        }
 
         std::cout << "It is player " << (isPlayerATurn ? playerAName : playerBName) << ". Please introduce x, y final position:\n";
         std::cout << "X: ";

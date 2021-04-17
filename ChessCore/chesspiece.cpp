@@ -5,6 +5,10 @@
 ChessPiece::ChessPiece(const ChessPlayer& owner)
 	:owner{ &owner } {}
 
+const ChessPlayer* ChessPiece::get_owner() {
+	return this->owner;
+}
+
 void ChessPiece::print() const noexcept {
 	std::cout << "I am a piece\n";
 }
@@ -18,5 +22,9 @@ std::string ChessPiece::to_string() {
 }
 
 bool ChessPiece::is_king() const noexcept {
+	return false;
+}
+
+bool ChessPiece::is_pawn() const noexcept {
 	return false;
 }

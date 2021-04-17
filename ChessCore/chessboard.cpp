@@ -1,5 +1,4 @@
 #include <iostream>
-#include <list>
 
 #include "chessboard.h"
 
@@ -15,7 +14,7 @@ constexpr int BOARD_Y_SIZE = 8;
 
 /*TODO: Do we really need this no params constructor?, forced to instantiate ChessGame*/
 ChessBoard::ChessBoard() 
-	: ChessBoard::ChessBoard(ChessPlayer{ "Player A" }, ChessPlayer{ "Player B"}) {}
+	: ChessBoard::ChessBoard(ChessPlayer{ "Player A" }, ChessPlayer{ "Player B", true }) {}
 
 ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB) {
 	this->pieces[0][0] = std::make_shared<Rook>(playerA);
@@ -184,7 +183,7 @@ bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int fi
 
 bool ChessBoard::movePlayerPiece(int initialX, int initialY, int finalX, int finalY) {
 
-	if (!this->pieces[initialX][initialY]->is_valid_movement(initialX, initialY, finalX, finalY)) {
+	if (!this->pieces[initialX][initialY]->is_valid_movement(initialX, initialY, finalX, finalY, this->pieces[finalX][finalY] != nullptr)) {
 		std::cout << "############ This piece cannot be moved to this new position\n";
 		return false;
 	}
@@ -217,4 +216,26 @@ bool ChessBoard::isPlayerBInCheck() {
 	}
 
 	return result;
+}
+
+std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int posY) {
+	std::vector<std::tuple<int, int>> result;
+
+	for (int j = 0; j < BOARD_Y_SIZE; j++) {
+		for (int i = 0; i < BOARD_X_SIZE; i++) {
+			if (this->pieces[posX][posY]->is_pawn() &&
+				!ChessBoard::is_forward_movement(this->pieces[posX][posY], posX, posY, i, j)) continue;
+
+			if (this->pieces[posX][posY]->is_valid_movement(posX, posY, i, j, this->pieces[i][j] != nullptr)) {
+				result.push_back(std::tuple<int, int>(i, j));
+			}
+		}
+	}
+
+	return result;
+}
+
+bool ChessBoard::is_forward_movement(std::shared_ptr<ChessPiece>& piece, int& initialX, int& initialY, int& finalX, int& finalY) {
+	return (piece->get_owner()->has_bottom_to_top_pieces_direction() && finalY < initialY) ||
+		(!piece->get_owner()->has_bottom_to_top_pieces_direction() && finalY > initialY);
 }

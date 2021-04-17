@@ -23,3 +23,7 @@ bool ChessGame::movePlayerAPiece(int initialX, int initialY, int finalX, int fin
 bool ChessGame::movePlayerBPiece(int initialX, int initialY, int finalX, int finalY) {
 	return this->board.movePlayerBPiece(initialX, initialY, finalX, finalY);
 }
+
+std::vector<std::tuple<int, int>> ChessGame::getPossibleMovements(int posX, int posY) {
+	return this->board.getPossibleMovements(posX, posY);
+}

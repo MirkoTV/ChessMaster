@@ -17,6 +17,6 @@ bool Knight::can_capture_piece_at(int posX, int posY) {
 	return false;
 }
 
-bool Knight::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY) {
+bool Knight::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY, bool isFinalPosTaken) {
 	return true;
 }
