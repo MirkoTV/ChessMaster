@@ -7,7 +7,7 @@ ChessGame::ChessGame()
 }
 
 ChessGame::ChessGame(const std::string& playerAName, const std::string& playerBName) 
-	: playerA{ ChessPlayer{ playerAName } }, playerB{ ChessPlayer{ playerBName } } {
+	: playerA{ ChessPlayer{ playerAName } }, playerB{ ChessPlayer{ playerBName, true } } {
 
 	this->board = ChessBoard{ this->playerA, this->playerB };
 }

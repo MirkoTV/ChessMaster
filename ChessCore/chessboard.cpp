@@ -160,6 +160,8 @@ bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int fi
 		this->kingAPos[1] = finalY;
 	}
 
+	movements.push_back(std::tuple<const ChessPlayer*, int, int, int, int>(this->playerA, initialX, initialY, finalX, finalY));
+
 	return result;
 }
 
@@ -174,6 +176,8 @@ bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int fi
 		this->kingBPos[0] = finalX;
 		this->kingBPos[1] = finalY;
 	}
+
+	movements.push_back(std::tuple<const ChessPlayer*, int, int, int, int>(this->playerB, initialX, initialY, finalX, finalY));
 
 	return result;
 }

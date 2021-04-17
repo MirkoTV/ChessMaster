@@ -24,6 +24,8 @@ class ChessBoard {
 	std::list<std::shared_ptr<ChessPiece>> playerAPieces;
 	std::list<std::shared_ptr<ChessPiece>> playerBPieces;
 
+	std::vector <std::tuple<const ChessPlayer*, int, int, int, int>> movements;
+
 	int kingAPos[2] = { 4, 0 };
 
 	int kingBPos[2] = { 4, 7 };
