@@ -18,5 +18,5 @@ bool Bishop::can_capture_piece_at(int posX, int posY) {
 }
 
 bool Bishop::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY, bool isFinalPosTaken) {
-	return true;
+	return abs(finalPosX - initialPosX) == abs(finalPosY - initialPosY);
 }

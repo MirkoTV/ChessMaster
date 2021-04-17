@@ -22,5 +22,5 @@ bool King::can_capture_piece_at(int posX, int posY) {
 }
 
 bool King::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY, bool isFinalPosTaken) {
-	return true;
+	return abs(finalPosX - initialPosX) <=1 && abs(finalPosY - initialPosX) <= 1;
 }

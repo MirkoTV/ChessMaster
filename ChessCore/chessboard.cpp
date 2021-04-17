@@ -245,15 +245,17 @@ bool ChessBoard::existsPieceInTheMiddle(int initialX, int initialY, int finalX, 
 	bool result = false;
 
 	if (initialX == finalX) {
-		for (int j = initialY + 1; j < finalY; j++) {
-			result = this->pieces[initialX][j] != nullptr;
+		int yDiff = abs(finalY - initialY);
+		for (int j = 1; j < yDiff; j++) {
+			result = this->pieces[initialX][initialY + j * (finalY > initialY ? 1 : -1)] != nullptr;
 
 			if (result) break;
 		}
 	}
 	else if (initialY == finalY) {
-		for (int i = initialX +1 ; i < finalX; i++) {
-			result = this->pieces[i][initialX] != nullptr;
+		int xDiff = abs(finalX - initialX);
+		for (int i = 1 ; i < xDiff; i++) {
+			result = this->pieces[initialX + i * (finalX > initialX ? 1 : -1)][initialY] != nullptr;
 
 			if (result) break;
 		}

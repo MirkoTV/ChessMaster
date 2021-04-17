@@ -18,5 +18,7 @@ bool Queen::can_capture_piece_at(int posX, int posY) {
 }
 
 bool Queen::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY, bool isFinalPosTaken) {
-	return true;
+	return (initialPosX == finalPosX) || 
+		(initialPosY == finalPosY) || 
+		(abs(finalPosX - initialPosX) == abs(finalPosY - initialPosY));
 }
