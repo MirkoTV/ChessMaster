@@ -16,7 +16,8 @@ constexpr int BOARD_Y_SIZE = 8;
 ChessBoard::ChessBoard() 
 	: ChessBoard::ChessBoard(ChessPlayer{ "Player A" }, ChessPlayer{ "Player B", true }) {}
 
-ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB) {
+ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB) 
+	: playerA{ &playerA }, playerB { &playerB } {
 	this->pieces[0][0] = std::make_shared<Rook>(playerA);
 	this->pieces[1][0] = std::make_shared<Knight>(playerA);
 	this->pieces[2][0] = std::make_shared<Bishop>(playerA);
@@ -148,7 +149,7 @@ void ChessBoard::print() const noexcept {
 }
 
 bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
-	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY);
+	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY, this->playerA);
 
 	if (this->isPlayerAInCheck()) {
 		std::cout << "############### Player A is in check!\n";
@@ -163,7 +164,7 @@ bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int fi
 }
 
 bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int finalY) {
-	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY);
+	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY, this->playerB);
 
 	if (this->isPlayerBInCheck()) {
 		std::cout << "############### Player B is in check!\n";
@@ -179,8 +180,14 @@ bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int fi
 
 /* Private Methods */
 
-bool ChessBoard::movePlayerPiece(int initialX, int initialY, int finalX, int finalY) {
+bool ChessBoard::movePlayerPiece(int initialX, int initialY, int finalX, int finalY, const ChessPlayer* player) {
+	if (this->pieces[initialX][initialY] == nullptr) return false;
 
+	if (this->pieces[initialX][initialY]->get_owner() != player) {
+		std::cout << "############ This piece cannot be moved because it is not yours\n";
+		return false;
+	}
+	
 	if (!ChessBoard::is_valid_movement(initialX, initialY, finalX, finalY)) {
 		std::cout << "############ This piece cannot be moved to this new position\n";
 		return false;

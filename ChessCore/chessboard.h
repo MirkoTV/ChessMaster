@@ -6,6 +6,7 @@
 
 #include "dll.h"
 #include "chesspiece.h"
+#include "chessplayer.h"
 
 #include "king.h"
 #include "queen.h"
@@ -17,6 +18,9 @@
 class ChessBoard {
 	std::shared_ptr<ChessPiece> pieces[8][8];
 
+	const ChessPlayer* playerA;
+	const ChessPlayer* playerB;
+
 	std::list<std::shared_ptr<ChessPiece>> playerAPieces;
 	std::list<std::shared_ptr<ChessPiece>> playerBPieces;
 
@@ -24,7 +28,7 @@ class ChessBoard {
 
 	int kingBPos[2] = { 4, 7 };
 
-	bool movePlayerPiece(int initialX, int initialY, int finalX, int finalY);
+	bool movePlayerPiece(int initialX, int initialY, int finalX, int finalY, const ChessPlayer* player);
 
 	bool isPlayerAInCheck();
 	bool isPlayerBInCheck();
