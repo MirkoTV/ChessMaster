@@ -29,6 +29,7 @@ class ChessBoard {
 	bool isPlayerAInCheck();
 	bool isPlayerBInCheck();
 	bool is_forward_movement(std::shared_ptr<ChessPiece>& piece, int& initialX, int& initialY, int& finalX, int& finalY);
+	bool is_valid_movement(int initialX, int initialY, int finalX, int finalY);
 	bool existsPieceInTheMiddle(int initialX, int initialY, int finalX, int finalY);
 
 public:

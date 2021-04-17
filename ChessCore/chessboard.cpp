@@ -181,7 +181,7 @@ bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int fi
 
 bool ChessBoard::movePlayerPiece(int initialX, int initialY, int finalX, int finalY) {
 
-	if (!this->pieces[initialX][initialY]->is_valid_movement(initialX, initialY, finalX, finalY, this->pieces[finalX][finalY] != nullptr)) {
+	if (!ChessBoard::is_valid_movement(initialX, initialY, finalX, finalY)) {
 		std::cout << "############ This piece cannot be moved to this new position\n";
 		return false;
 	}
@@ -223,22 +223,28 @@ std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int
 
 	for (int j = 0; j < BOARD_Y_SIZE; j++) {
 		for (int i = 0; i < BOARD_X_SIZE; i++) {
-			bool isPositionTaken = this->pieces[i][j] != nullptr;
-
-			if (isPositionTaken && this->pieces[posX][posY]->get_owner() == this->pieces[i][j]->get_owner()) continue;
-
-			if (!this->pieces[posX][posY]->is_valid_movement(posX, posY, i, j, isPositionTaken)) continue;
-
-			if (this->pieces[posX][posY]->is_pawn() &&
-				!ChessBoard::is_forward_movement(this->pieces[posX][posY], posX, posY, i, j)) continue;
-
-			if (!this->pieces[posX][posY]->is_knight() && ChessBoard::existsPieceInTheMiddle(posX, posY, i, j)) continue;
-			
-			result.push_back(std::tuple<int, int>(i, j));
+			if(ChessBoard::is_valid_movement(posX, posY, i, j)) result.push_back(std::tuple<int, int>(i, j));
 		}
 	}
 
 	return result;
+}
+
+bool ChessBoard::is_valid_movement(int initialX, int initialY, int finalX, int finalY) {
+	auto pieceToMove = this->pieces[initialX][initialY];
+	bool isNewPositionTaken = this->pieces[finalX][finalY] != nullptr;	
+
+	if (isNewPositionTaken  && pieceToMove->get_owner() == this->pieces[finalX][finalY]->get_owner()) return false;
+
+	if (!pieceToMove->is_valid_movement(initialX, initialY, finalX, finalY, isNewPositionTaken)) return false;
+
+	if (pieceToMove->is_pawn() &&
+		!ChessBoard::is_forward_movement(pieceToMove, initialX, initialY, finalX, finalY)) return false;
+
+	if (!pieceToMove->is_knight() 
+		&& ChessBoard::existsPieceInTheMiddle(initialX, initialY, finalX, finalY)) return false;
+
+	return true;
 }
 
 bool ChessBoard::existsPieceInTheMiddle(int initialX, int initialY, int finalX, int finalY) {
