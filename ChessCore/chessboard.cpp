@@ -127,8 +127,6 @@ ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB) {
 }
 
 void ChessBoard::print() const noexcept {
-	std::cout << "I am a board\n";
-
 	std::cout << "These pieces in the board are\n";
 	for (int j = 0; j < BOARD_Y_SIZE; j++) {
 	std::cout << "-------------------------------------------------\n";
@@ -223,12 +221,47 @@ std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int
 
 	for (int j = 0; j < BOARD_Y_SIZE; j++) {
 		for (int i = 0; i < BOARD_X_SIZE; i++) {
+			bool isPositionTaken = this->pieces[i][j] != nullptr;
+
+			if (isPositionTaken && this->pieces[posX][posY]->get_owner() == this->pieces[i][j]->get_owner()) continue;
+
+			if (!this->pieces[posX][posY]->is_valid_movement(posX, posY, i, j, isPositionTaken)) continue;
+
 			if (this->pieces[posX][posY]->is_pawn() &&
 				!ChessBoard::is_forward_movement(this->pieces[posX][posY], posX, posY, i, j)) continue;
 
-			if (this->pieces[posX][posY]->is_valid_movement(posX, posY, i, j, this->pieces[i][j] != nullptr)) {
-				result.push_back(std::tuple<int, int>(i, j));
-			}
+			if (ChessBoard::existsPieceInTheMiddle(posX, posY, i, j)) continue;
+			
+			result.push_back(std::tuple<int, int>(i, j));
+		}
+	}
+
+	return result;
+}
+
+bool ChessBoard::existsPieceInTheMiddle(int initialX, int initialY, int finalX, int finalY) {
+	bool result = false;
+
+	if (initialX == finalX) {
+		for (int j = initialY + 1; j < finalY; j++) {
+			result = this->pieces[initialX][j] != nullptr;
+
+			if (result) break;
+		}
+	}
+	else if (initialY == finalY) {
+		for (int i = initialX +1 ; i < finalX; i++) {
+			result = this->pieces[i][initialX] != nullptr;
+
+			if (result) break;
+		}
+	}
+	else if (abs(finalX - initialX) == abs(finalY - initialY)) {
+		int diagonalDiff = abs(finalX - initialX);
+		for (int i = 1; i < diagonalDiff; i++) {
+			result = this->pieces[initialX + i * (finalX > initialX ? 1 : -1)][initialY + i * (finalY > initialY ? 1 : -1)] != nullptr;
+
+			if (result) break;
 		}
 	}
 
