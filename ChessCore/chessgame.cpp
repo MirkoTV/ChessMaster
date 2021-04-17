@@ -3,7 +3,7 @@
 #include "chessgame.h"
 
 ChessGame::ChessGame()
-	: ChessGame::ChessGame("Player A", "Player B") {
+	: ChessGame::ChessGame("A", "B") {
 }
 
 ChessGame::ChessGame(const std::string& playerAName, const std::string& playerBName) 

@@ -14,7 +14,7 @@ constexpr int BOARD_Y_SIZE = 8;
 
 /*TODO: Do we really need this no params constructor?, forced to instantiate ChessGame*/
 ChessBoard::ChessBoard() 
-	: ChessBoard::ChessBoard(ChessPlayer{ "Player A" }, ChessPlayer{ "Player B", true }) {}
+	: ChessBoard::ChessBoard(ChessPlayer{ "A" }, ChessPlayer{ "B", true }) {}
 
 ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB) 
 	: playerA{ &playerA }, playerB { &playerB } {
@@ -128,9 +128,10 @@ ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB)
 }
 
 void ChessBoard::print() const noexcept {
-	std::cout << "These pieces in the board are\n";
+	std::cout << "     0     1     2     3     4     5     6     7        \n";
 	for (int j = 0; j < BOARD_Y_SIZE; j++) {
-	std::cout << "-------------------------------------------------\n";
+		std::cout << "  -------------------------------------------------\n";
+		std::cout << j << " ";
 		for (int i = 0; i < BOARD_X_SIZE; i++) {
 			std::cout << "|";
 			if (this->pieces[i][j] == nullptr) {
@@ -140,12 +141,10 @@ void ChessBoard::print() const noexcept {
 				std::cout << " " << this->pieces[i][j]->to_string_by_player() << " ";
 			}
 		}
-		std::cout << "|\n";
+		std::cout << "| "<< j << "\n";
 	}
-	std::cout << "-------------------------------------------------\n";
-
-	std::cout << "King A position is: [" << this->kingAPos[0] << ", " << this->kingAPos[1] << "]\n";
-	std::cout << "King B position is: [" << this->kingBPos[0] << ", " << this->kingBPos[1] << "]\n";
+	std::cout << "  -------------------------------------------------\n";
+	std::cout << "     0     1     2     3     4     5     6     7        \n";
 }
 
 bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
