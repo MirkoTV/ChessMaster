@@ -40,6 +40,29 @@ void printTitle() {
     std::cout << ok_lines;
 }
 
+void printBoard(const ChessGame& game) noexcept {
+    int board_x_size = game.get_board_x_size();
+    int board_y_size = game.get_board_y_size();
+
+    std::cout << "     0     1     2     3     4     5     6     7        \n";
+    for (int j = 0; j < board_x_size; j++) {
+        std::cout << "  -------------------------------------------------\n";
+        std::cout << j << " ";
+        for (int i = 0; i < board_y_size; i++) {
+            std::cout << "|";
+            if (game.get_piece_at(i, j) == nullptr) {
+                std::cout << "     ";
+            }
+            else {
+                std::cout << " " << game.get_piece_at(i, j)->to_string_by_player() << " ";
+            }
+        }
+        std::cout << "| " << j << "\n";
+    }
+    std::cout << "  -------------------------------------------------\n";
+    std::cout << "     0     1     2     3     4     5     6     7        \n";
+}
+
 void clearConsole() {
     // Windows Only
     std::system("cls");
@@ -62,7 +85,7 @@ int main()
     bool isPlayerATurn = true;
     while (true) {
         clearConsole();
-        game.print();
+        printBoard(game);
 
         if (isPlayerATurn) {
             system("Color 0E");

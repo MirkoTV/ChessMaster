@@ -14,11 +14,13 @@ class CHESSCORE_EXPORT ChessGame{
 public:
 	ChessGame();
 	ChessGame(const std::string& playerAName, const std::string& playerBName);
-	void print() const noexcept;
 	bool movePlayerAPiece(int initialX, int initialY, int finalX, int finalY);
 	bool movePlayerBPiece(int initialX, int initialY, int finalX, int finalY);
 	std::vector<std::tuple<int, int>> getPossibleMovementsForPlayerA(int posX, int posY);
 	std::vector<std::tuple<int, int>> getPossibleMovementsForPlayerB(int posX, int posY);
 	bool is_player_a_in_check();
 	bool is_player_b_in_check();
+	int get_board_x_size() const noexcept;
+	int get_board_y_size() const noexcept;
+	const std::shared_ptr<ChessPiece> get_piece_at(int i, int j) const noexcept;
 };

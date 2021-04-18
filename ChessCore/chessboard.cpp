@@ -132,26 +132,6 @@ ChessBoard::ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB)
 	this->playerBPieces.push_back(this->pieces[7][7]);
 }
 
-void ChessBoard::print() const noexcept {
-	std::cout << "     0     1     2     3     4     5     6     7        \n";
-	for (int j = 0; j < BOARD_Y_SIZE; j++) {
-		std::cout << "  -------------------------------------------------\n";
-		std::cout << j << " ";
-		for (int i = 0; i < BOARD_X_SIZE; i++) {
-			std::cout << "|";
-			if (this->pieces[i][j] == nullptr) {
-				std::cout << "     ";
-			}
-			else {
-				std::cout << " " << this->pieces[i][j]->to_string_by_player() << " ";
-			}
-		}
-		std::cout << "| "<< j << "\n";
-	}
-	std::cout << "  -------------------------------------------------\n";
-	std::cout << "     0     1     2     3     4     5     6     7        \n";
-}
-
 bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
 	auto pieceAtFinalPos = this->pieces[finalX][finalY];
 	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY, this->playerA);
@@ -325,4 +305,16 @@ bool ChessBoard::existsPieceInTheMiddle(int initialX, int initialY, int finalX, 
 bool ChessBoard::is_forward_movement(std::shared_ptr<ChessPiece>& piece, int& initialX, int& initialY, int& finalX, int& finalY) {
 	return (piece->get_owner()->has_bottom_to_top_pieces_direction() && finalY < initialY) ||
 		(!piece->get_owner()->has_bottom_to_top_pieces_direction() && finalY > initialY);
+}
+
+int ChessBoard::get_board_x_size() const noexcept {
+	return BOARD_X_SIZE;
+}
+
+int ChessBoard::get_board_y_size() const noexcept {
+	return BOARD_Y_SIZE;
+}
+
+const std::shared_ptr<ChessPiece> ChessBoard::get_piece_at(int i, int j) const noexcept {
+	return this->pieces[i][j];
 }
