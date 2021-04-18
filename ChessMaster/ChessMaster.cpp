@@ -7,6 +7,7 @@
 #include "nopieceexception.h"
 #include "nopieceownershipexception.h"
 #include "invalidmovementexception.h"
+#include "movementgeneratescheckexception.h"
 
 #include "chessgame.h"
 
@@ -55,10 +56,8 @@ int main()
     system("Color 0F");
     printTitle();
     std::cin.get();
-    
 
     ChessGame game;
-    
 
     bool isPlayerATurn = true;
     while (true) {
@@ -71,6 +70,14 @@ int main()
         else {
             system("Color 0B");
         }
+
+        if (isPlayerATurn && game.is_player_a_in_check()) {
+            std::cout << "Player A is right now checked!\n";
+        }
+        else if (game.is_player_b_in_check()){
+            std::cout << "Player B is right now checked!\n";
+        }
+
         int initialX;
         int initialY;
         int finalX;
@@ -152,6 +159,12 @@ int main()
             continue;
         }
         catch (const InvalidMovementException & e) {
+            std::cout << e.what() << "\n";
+            wait_to_hit_enter();
+
+            continue;
+        }
+        catch (const MovementGeneratesCheckException& e) {
             std::cout << e.what() << "\n";
             wait_to_hit_enter();
 

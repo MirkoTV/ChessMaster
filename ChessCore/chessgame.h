@@ -19,4 +19,6 @@ public:
 	bool movePlayerBPiece(int initialX, int initialY, int finalX, int finalY);
 	std::vector<std::tuple<int, int>> getPossibleMovementsForPlayerA(int posX, int posY);
 	std::vector<std::tuple<int, int>> getPossibleMovementsForPlayerB(int posX, int posY);
+	bool is_player_a_in_check();
+	bool is_player_b_in_check();
 };

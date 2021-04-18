@@ -32,8 +32,6 @@ class ChessBoard {
 
 	bool movePlayerPiece(int initialX, int initialY, int finalX, int finalY, const ChessPlayer* player);
 
-	bool isPlayerAInCheck();
-	bool isPlayerBInCheck();
 	bool is_forward_movement(std::shared_ptr<ChessPiece>& piece, int& initialX, int& initialY, int& finalX, int& finalY);
 	bool is_valid_movement(int initialX, int initialY, int finalX, int finalY);
 	bool existsPieceInTheMiddle(int initialX, int initialY, int finalX, int finalY);
@@ -43,6 +41,8 @@ public:
 	ChessBoard();
 	ChessBoard(const ChessPlayer& playerA, const ChessPlayer& playerB);
 	void print() const noexcept;
+	bool is_player_a_in_check();
+	bool is_player_b_in_check();
 	bool movePlayerAPiece(int initialX, int initialY, int finalX, int finalY);
 	bool movePlayerBPiece(int initialX, int initialY, int finalX, int finalY);
 	std::vector<std::tuple<int, int>> getPossibleMovementsForPlayerA(int posX, int posY);

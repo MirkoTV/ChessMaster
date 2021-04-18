@@ -29,6 +29,7 @@
     <ClInclude Include="invalidmovementexception.h" />
     <ClInclude Include="king.h" />
     <ClInclude Include="knight.h" />
+    <ClInclude Include="movementgeneratescheckexception.h" />
     <ClInclude Include="nopieceexception.h" />
     <ClInclude Include="nopieceownershipexception.h" />
     <ClInclude Include="pawn.h" />
@@ -45,6 +46,7 @@
     <ClCompile Include="invalidmovementexception.cpp" />
     <ClCompile Include="king.cpp" />
     <ClCompile Include="knight.cpp" />
+    <ClCompile Include="movementgeneratescheckexception.cpp" />
     <ClCompile Include="nopieceexception.cpp" />
     <ClCompile Include="nopieceownershipexception.cpp" />
     <ClCompile Include="pawn.cpp" />

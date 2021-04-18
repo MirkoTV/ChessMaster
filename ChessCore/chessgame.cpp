@@ -31,3 +31,11 @@ std::vector<std::tuple<int, int>> ChessGame::getPossibleMovementsForPlayerA(int 
 std::vector<std::tuple<int, int>> ChessGame::getPossibleMovementsForPlayerB(int posX, int posY) {
 	return this->board.getPossibleMovementsForPlayerB(posX, posY);
 }
+
+bool ChessGame::is_player_a_in_check() {
+	return this->board.is_player_a_in_check();
+}
+
+bool ChessGame::is_player_b_in_check() {
+	return this->board.is_player_b_in_check();
+}

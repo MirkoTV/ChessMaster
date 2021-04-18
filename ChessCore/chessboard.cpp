@@ -12,6 +12,7 @@
 #include "nopieceexception.h"
 #include "nopieceownershipexception.h"
 #include "invalidmovementexception.h"
+#include "movementgeneratescheckexception.h"
 
 constexpr int BOARD_X_SIZE = 8;
 constexpr int BOARD_Y_SIZE = 8;
@@ -154,8 +155,12 @@ void ChessBoard::print() const noexcept {
 bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
 	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY, this->playerA);
 
-	if (this->isPlayerAInCheck()) {
-		std::cout << "############### Player A is in check!\n";
+	if (this->is_player_a_in_check()) {
+		// Revert movement
+		this->pieces[initialX][initialY] = this->pieces[finalX][finalY];
+		this->pieces[finalX][finalY] = nullptr;
+
+		throw MovementGeneratesCheckException();
 	}
 
 	if (result && this->pieces[finalX][finalY]->is_king()) {
@@ -171,8 +176,12 @@ bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int fi
 bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int finalY) {
 	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY, this->playerB);
 
-	if (this->isPlayerBInCheck()) {
-		std::cout << "############### Player B is in check!\n";
+	if (this->is_player_b_in_check()) {
+		// Revert movement
+		this->pieces[initialX][initialY] = this->pieces[finalX][finalY];
+		this->pieces[finalX][finalY] = nullptr;
+
+		throw MovementGeneratesCheckException();
 	}
 
 	if (result && this->pieces[finalX][finalY]->is_king()) {
@@ -199,28 +208,35 @@ bool ChessBoard::movePlayerPiece(int initialX, int initialY, int finalX, int fin
 	return true;
 }
 
-bool ChessBoard::isPlayerAInCheck() {
-	bool result = false;
+bool ChessBoard::is_player_a_in_check() {
+	for (int j = 0; j < BOARD_Y_SIZE; j++) {
+		for (int i = 0; i < BOARD_X_SIZE; i++) {
+			if (this->pieces[i][j] == nullptr) continue;
+			if (this->pieces[i][j]->get_owner() == this->playerA) continue;
 
-	for (auto const& playerBPiece : this->playerBPieces) {
-		result = playerBPiece->can_capture_piece_at(this->kingAPos[0], this->kingBPos[1]);
+			bool result = ChessBoard::is_valid_movement(i, j, this->kingAPos[0], this->kingAPos[1]);
+			//std::cout << "Checking: " << i << ", " << j << " ... " << this->kingAPos[0] << ", " << this->kingAPos[1] << ": " << result <<"\n";
 
-		if (result) break;
+			if (result) return true;
+		}
 	}
 
-	return result;
+	return false;
 }
 
-bool ChessBoard::isPlayerBInCheck() {
-	bool result = false;
+bool ChessBoard::is_player_b_in_check() {
+	for (int j = 0; j < BOARD_Y_SIZE; j++) {
+		for (int i = 0; i < BOARD_X_SIZE; i++) {
+			if (this->pieces[i][j] == nullptr) continue;
+			if (this->pieces[i][j]->get_owner() == this->playerB) continue;
 
-	for (auto const& playerAPiece : this->playerAPieces) {
-		result = playerAPiece->can_capture_piece_at(this->kingAPos[0], this->kingBPos[1]);
+			bool result = ChessBoard::is_valid_movement(i, j, this->kingBPos[0], this->kingBPos[1]);
 
-		if (result) break;
+			if (result) return true;
+		}
 	}
 
-	return result;
+	return false;
 }
 
 std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovementsForPlayerA(int posX, int posY) {
