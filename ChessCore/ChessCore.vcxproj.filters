@@ -19,6 +19,12 @@
     <Filter Include="Source Files\pieces">
       <UniqueIdentifier>{e4049bf0-f75a-4884-ae0c-f0bbdacd73f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\exceptions">
+      <UniqueIdentifier>{59114538-2e90-4f9d-8450-26e4148cee71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\exceptions">
+      <UniqueIdentifier>{4237d7e7-a480-4da1-838b-ca096981daa7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chesscore.h">
@@ -57,6 +63,15 @@
     <ClInclude Include="king.h">
       <Filter>Header Files\pieces</Filter>
     </ClInclude>
+    <ClInclude Include="nopieceexception.h">
+      <Filter>Header Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="nopieceownershipexception.h">
+      <Filter>Header Files\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="invalidmovementexception.h">
+      <Filter>Header Files\exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="chesscore.cpp">
@@ -91,6 +106,15 @@
     </ClCompile>
     <ClCompile Include="knight.cpp">
       <Filter>Source Files\pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="nopieceexception.cpp">
+      <Filter>Source Files\exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="nopieceownershipexception.cpp">
+      <Filter>Source Files\exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="invalidmovementexception.cpp">
+      <Filter>Source Files\exceptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

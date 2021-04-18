@@ -17,5 +17,6 @@ public:
 	void print() const noexcept;
 	bool movePlayerAPiece(int initialX, int initialY, int finalX, int finalY);
 	bool movePlayerBPiece(int initialX, int initialY, int finalX, int finalY);
-	std::vector<std::tuple<int, int>> getPossibleMovements(int posX, int posY);
+	std::vector<std::tuple<int, int>> getPossibleMovementsForPlayerA(int posX, int posY);
+	std::vector<std::tuple<int, int>> getPossibleMovementsForPlayerB(int posX, int posY);
 };

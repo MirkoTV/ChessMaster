@@ -26,8 +26,11 @@
     <ClInclude Include="chesspiece.h" />
     <ClInclude Include="chessplayer.h" />
     <ClInclude Include="dll.h" />
+    <ClInclude Include="invalidmovementexception.h" />
     <ClInclude Include="king.h" />
     <ClInclude Include="knight.h" />
+    <ClInclude Include="nopieceexception.h" />
+    <ClInclude Include="nopieceownershipexception.h" />
     <ClInclude Include="pawn.h" />
     <ClInclude Include="queen.h" />
     <ClInclude Include="rook.h" />
@@ -39,8 +42,11 @@
     <ClCompile Include="chessgame.cpp" />
     <ClCompile Include="chesspiece.cpp" />
     <ClCompile Include="chessplayer.cpp" />
+    <ClCompile Include="invalidmovementexception.cpp" />
     <ClCompile Include="king.cpp" />
     <ClCompile Include="knight.cpp" />
+    <ClCompile Include="nopieceexception.cpp" />
+    <ClCompile Include="nopieceownershipexception.cpp" />
     <ClCompile Include="pawn.cpp" />
     <ClCompile Include="queen.cpp" />
     <ClCompile Include="rook.cpp" />

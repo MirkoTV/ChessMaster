@@ -9,6 +9,10 @@
 #include "rook.h"
 #include "pawn.h"
 
+#include "nopieceexception.h"
+#include "nopieceownershipexception.h"
+#include "invalidmovementexception.h"
+
 constexpr int BOARD_X_SIZE = 8;
 constexpr int BOARD_Y_SIZE = 8;
 
@@ -184,17 +188,10 @@ bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int fi
 /* Private Methods */
 
 bool ChessBoard::movePlayerPiece(int initialX, int initialY, int finalX, int finalY, const ChessPlayer* player) {
-	if (this->pieces[initialX][initialY] == nullptr) return false;
-
-	if (this->pieces[initialX][initialY]->get_owner() != player) {
-		std::cout << "############ This piece cannot be moved because it is not yours\n";
-		return false;
-	}
+	if (this->pieces[initialX][initialY] == nullptr) throw NoPieceException();
+	if (this->pieces[initialX][initialY]->get_owner() != player) throw NoPieceOwnershipException();
 	
-	if (!ChessBoard::is_valid_movement(initialX, initialY, finalX, finalY)) {
-		std::cout << "############ This piece cannot be moved to this new position\n";
-		return false;
-	}
+	if (!ChessBoard::is_valid_movement(initialX, initialY, finalX, finalY)) throw InvalidMovementException();
 
 	this->pieces[finalX][finalY] = this->pieces[initialX][initialY];
 	this->pieces[initialX][initialY] = nullptr;
@@ -226,10 +223,19 @@ bool ChessBoard::isPlayerBInCheck() {
 	return result;
 }
 
-std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int posY) {
-	std::vector<std::tuple<int, int>> result;
+std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovementsForPlayerA(int posX, int posY) {
+	return ChessBoard::getPossibleMovements(posX, posY, this->playerA);
+}
 
-	if (this->pieces[posX][posY] == nullptr) return result;
+std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovementsForPlayerB(int posX, int posY) {
+	return ChessBoard::getPossibleMovements(posX, posY, this->playerB);
+}
+
+std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int posY, const ChessPlayer* player) {
+	if (this->pieces[posX][posY] == nullptr) throw NoPieceException();
+	if (this->pieces[posX][posY]->get_owner() != player) throw NoPieceOwnershipException();
+
+	std::vector<std::tuple<int, int>> result;
 
 	for (int j = 0; j < BOARD_Y_SIZE; j++) {
 		for (int i = 0; i < BOARD_X_SIZE; i++) {

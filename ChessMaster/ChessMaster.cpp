@@ -4,7 +4,10 @@
 #include <vector>
 #include <tuple>
 
-#include "chesscore.h"
+#include "nopieceexception.h"
+#include "nopieceownershipexception.h"
+#include "invalidmovementexception.h"
+
 #include "chessgame.h"
 
 void printTitle() {
@@ -41,18 +44,27 @@ void clearConsole() {
     std::system("cls");
 }
 
+void wait_to_hit_enter() {
+    std::cout << "Please hit enter to continue...\n";
+    std::cin.get();
+    std::cin.get();
+}
+
 int main()
 {
     system("Color 0F");
     printTitle();
     std::cin.get();
-    clearConsole();
+    
 
     ChessGame game;
-    game.print();
+    
 
     bool isPlayerATurn = true;
     while (true) {
+        clearConsole();
+        game.print();
+
         if (isPlayerATurn) {
             system("Color 0E");
         }
@@ -71,7 +83,40 @@ int main()
         std::cout << "Y: ";
         std::cin >> initialY;
 
-        std::vector<std::tuple<int, int>> possibleMovements = game.getPossibleMovements(initialX, initialY);
+        std::vector<std::tuple<int, int>> possibleMovements;
+        try {
+            if (isPlayerATurn) {
+                possibleMovements = game.getPossibleMovementsForPlayerA(initialX, initialY);
+            }
+            else {
+                possibleMovements = game.getPossibleMovementsForPlayerB(initialX, initialY);
+            }
+        }
+        catch (const NoPieceException& e) {
+            std::cout << e.what() << "\n";
+            wait_to_hit_enter();
+
+            continue;
+        }
+        catch (const NoPieceOwnershipException& e) {
+            std::cout << e.what() << "\n";
+            wait_to_hit_enter();
+
+            continue;
+        }
+        catch (...) {
+            std::cout << "An Unexpected error ocurred. Please contact with your administrator.";
+            wait_to_hit_enter();
+
+            continue;
+        }
+
+        if (possibleMovements.size() == 0) {
+            std::cout << "Opps, Looks like you cannot move this piece anywhere...\n";
+            wait_to_hit_enter();
+
+            continue;
+        }
 
         std::cout << "Possible movements for this piece are:\n";
         for (auto const &pos : possibleMovements) {
@@ -84,16 +129,39 @@ int main()
         std::cout << "Y: ";
         std::cin >> finalY;
 
-        if (isPlayerATurn) {
-            game.movePlayerAPiece(initialX, initialY, finalX, finalY);
+        try {
+            if (isPlayerATurn) {
+                game.movePlayerAPiece(initialX, initialY, finalX, finalY);
+            }
+            else {
+                game.movePlayerBPiece(initialX, initialY, finalX, finalY);
+            }
+
+            isPlayerATurn = !isPlayerATurn;
         }
-        else {
-            game.movePlayerBPiece(initialX, initialY, finalX, finalY);
+        catch (const NoPieceException& e) {
+            std::cout << e.what() << "\n";
+            wait_to_hit_enter();
+
+            continue;
         }
-        
-        isPlayerATurn = !isPlayerATurn;
-        
-        clearConsole();
-        game.print();
+        catch (const NoPieceOwnershipException& e) {
+            std::cout << e.what() << "\n";
+            wait_to_hit_enter();
+
+            continue;
+        }
+        catch (const InvalidMovementException & e) {
+            std::cout << e.what() << "\n";
+            wait_to_hit_enter();
+
+            continue;
+        }
+        catch (...) {
+            std::cout << "An Unexpected error ocurred. Please contact with your administrator.";
+            wait_to_hit_enter();
+
+            continue;
+        }
     }
 }
