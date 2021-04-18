@@ -99,6 +99,7 @@ int main()
 
             if (!game.has_player_a_possible_movements()) {
                 std::cout << "Check Mate! Player B is the winner!\n";
+                wait_to_hit_enter();
                 break;
             }
         }
@@ -107,6 +108,7 @@ int main()
 
             if (!game.has_player_b_possible_movements()) {
                 std::cout << "Check Mate! Player A is the winner!\n";
+                wait_to_hit_enter();
                 break;
             }
         }

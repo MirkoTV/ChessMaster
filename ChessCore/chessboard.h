@@ -32,10 +32,10 @@ class ChessBoard {
 
 	bool movePlayerPiece(int initialX, int initialY, int finalX, int finalY, const ChessPlayer* player);
 
-	bool is_forward_movement(std::shared_ptr<ChessPiece>& piece, int& initialX, int& initialY, int& finalX, int& finalY);
-	bool is_valid_movement(int initialX, int initialY, int finalX, int finalY);
-	bool existsPieceInTheMiddle(int initialX, int initialY, int finalX, int finalY);
-	std::vector<std::tuple<int, int>> getPossibleMovements(int posX, int posY, const ChessPlayer* player);
+	bool is_forward_movement(std::shared_ptr<ChessPiece>& piece, int& initialX, int& initialY, int& finalX, int& finalY) const;
+	bool is_valid_movement(int initialX, int initialY, int finalX, int finalY) const;
+	bool existsPieceInTheMiddle(int initialX, int initialY, int finalX, int finalY) const;
+	std::vector<std::tuple<int, int>> getPossibleMovements(int posX, int posY, const ChessPlayer* player) const;
 
 public:
 	ChessBoard();
@@ -49,6 +49,6 @@ public:
 	int get_board_x_size() const noexcept;
 	int get_board_y_size() const noexcept;
 	const std::shared_ptr<ChessPiece> get_piece_at(int i, int j) const noexcept;
-	bool has_player_a_possible_movements() const noexcept;
-	bool has_player_b_possible_movements() const noexcept;
+	bool has_player_a_possible_movements() noexcept;
+	bool has_player_b_possible_movements() noexcept;
 };

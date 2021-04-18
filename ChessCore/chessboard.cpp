@@ -239,7 +239,7 @@ std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovementsForPlayerB(int
 	return ChessBoard::getPossibleMovements(posX, posY, this->playerB);
 }
 
-std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int posY, const ChessPlayer* player) {
+std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int posY, const ChessPlayer* player) const {
 	if (this->pieces[posX][posY] == nullptr) throw NoPieceException();
 	if (this->pieces[posX][posY]->get_owner() != player) throw NoPieceOwnershipException();
 
@@ -254,7 +254,7 @@ std::vector<std::tuple<int, int>> ChessBoard::getPossibleMovements(int posX, int
 	return result;
 }
 
-bool ChessBoard::is_valid_movement(int initialX, int initialY, int finalX, int finalY) {
+bool ChessBoard::is_valid_movement(int initialX, int initialY, int finalX, int finalY) const {
 	auto pieceToMove = this->pieces[initialX][initialY];
 	bool isNewPositionTaken = this->pieces[finalX][finalY] != nullptr;	
 
@@ -271,7 +271,7 @@ bool ChessBoard::is_valid_movement(int initialX, int initialY, int finalX, int f
 	return true;
 }
 
-bool ChessBoard::existsPieceInTheMiddle(int initialX, int initialY, int finalX, int finalY) {
+bool ChessBoard::existsPieceInTheMiddle(int initialX, int initialY, int finalX, int finalY) const {
 	bool result = false;
 
 	if (initialX == finalX) {
@@ -302,7 +302,7 @@ bool ChessBoard::existsPieceInTheMiddle(int initialX, int initialY, int finalX, 
 	return result;
 }
 
-bool ChessBoard::is_forward_movement(std::shared_ptr<ChessPiece>& piece, int& initialX, int& initialY, int& finalX, int& finalY) {
+bool ChessBoard::is_forward_movement(std::shared_ptr<ChessPiece>& piece, int& initialX, int& initialY, int& finalX, int& finalY) const {
 	return (piece->get_owner()->has_bottom_to_top_pieces_direction() && finalY < initialY) ||
 		(!piece->get_owner()->has_bottom_to_top_pieces_direction() && finalY > initialY);
 }
@@ -319,10 +319,86 @@ const std::shared_ptr<ChessPiece> ChessBoard::get_piece_at(int i, int j) const n
 	return this->pieces[i][j];
 }
 
-bool ChessBoard::has_player_a_possible_movements() const noexcept {
-	return true;
+bool ChessBoard::has_player_a_possible_movements() noexcept {
+	bool has_possible_movements = false;
+	for (int j = 0; j < BOARD_Y_SIZE; j++) {
+		for (int i = 0; i < BOARD_X_SIZE; i++) {
+			if (this->pieces[i][j] == nullptr) continue;
+			if (this->pieces[i][j]->get_owner() == this->playerB) continue;
+
+			auto possibleMovements = ChessBoard::getPossibleMovements(i, j, this->playerA);
+
+			for (auto &possibleMovement : possibleMovements) {
+				int finalX = std::get<0>(possibleMovement);
+				int finalY = std::get<1>(possibleMovement);
+
+				auto pieceAtFinalPos = this->pieces[finalX][finalY];
+				bool result = this->movePlayerPiece(i, j, finalX, finalY, this->playerA);
+
+				if (result && this->pieces[finalX][finalY]->is_king()) {
+					this->kingAPos[0] = finalX;
+					this->kingAPos[1] = finalY;
+				}
+
+				if (!this->is_player_a_in_check()) {
+					has_possible_movements = true;
+				}
+
+				// Revert movement
+				this->pieces[i][j] = this->pieces[finalX][finalY];
+				this->pieces[finalX][finalY] = pieceAtFinalPos;
+
+				if (this->pieces[i][j]->is_king()) {
+					this->kingAPos[0] = i;
+					this->kingAPos[1] = j;
+				}
+
+				if (has_possible_movements) return true;
+			}
+		}
+	}
+
+	return false;
 }
 
-bool ChessBoard::has_player_b_possible_movements() const noexcept {
-	return true;
+bool ChessBoard::has_player_b_possible_movements() noexcept {
+	bool has_possible_movements = false;
+	for (int j = 0; j < BOARD_Y_SIZE; j++) {
+		for (int i = 0; i < BOARD_X_SIZE; i++) {
+			if (this->pieces[i][j] == nullptr) continue;
+			if (this->pieces[i][j]->get_owner() == this->playerA) continue;
+
+			auto possibleMovements = ChessBoard::getPossibleMovements(i, j, this->playerB);
+
+			for (auto& possibleMovement : possibleMovements) {
+				int finalX = std::get<0>(possibleMovement);
+				int finalY = std::get<1>(possibleMovement);
+
+				auto pieceAtFinalPos = this->pieces[finalX][finalY];
+				bool result = this->movePlayerPiece(i, j, finalX, finalY, this->playerB);
+
+				if (result && this->pieces[finalX][finalY]->is_king()) {
+					this->kingBPos[0] = finalX;
+					this->kingBPos[1] = finalY;
+				}
+
+				if (!this->is_player_b_in_check()) {
+					has_possible_movements = true;
+				}
+
+				// Revert movement
+				this->pieces[i][j] = this->pieces[finalX][finalY];
+				this->pieces[finalX][finalY] = pieceAtFinalPos;
+
+				if (this->pieces[i][j]->is_king()) {
+					this->kingBPos[0] = i;
+					this->kingBPos[1] = j;
+				}
+
+				if (has_possible_movements) return true;
+			}
+		}
+	}
+
+	return false;
 }
