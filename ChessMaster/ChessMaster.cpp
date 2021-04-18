@@ -96,9 +96,19 @@ int main()
 
         if (isPlayerATurn && game.is_player_a_in_check()) {
             std::cout << "Player A is right now checked!\n";
+
+            if (!game.has_player_a_possible_movements()) {
+                std::cout << "Check Mate! Player B is the winner!\n";
+                break;
+            }
         }
         else if (game.is_player_b_in_check()){
             std::cout << "Player B is right now checked!\n";
+
+            if (!game.has_player_b_possible_movements()) {
+                std::cout << "Check Mate! Player A is the winner!\n";
+                break;
+            }
         }
 
         int initialX;

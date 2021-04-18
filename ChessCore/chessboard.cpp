@@ -318,3 +318,11 @@ int ChessBoard::get_board_y_size() const noexcept {
 const std::shared_ptr<ChessPiece> ChessBoard::get_piece_at(int i, int j) const noexcept {
 	return this->pieces[i][j];
 }
+
+bool ChessBoard::has_player_a_possible_movements() const noexcept {
+	return true;
+}
+
+bool ChessBoard::has_player_b_possible_movements() const noexcept {
+	return true;
+}
