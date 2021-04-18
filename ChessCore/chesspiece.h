@@ -4,9 +4,12 @@
 
 class ChessPiece {
 	const ChessPlayer* owner;
+	bool is_moved = false;
 public:
 	ChessPiece(const ChessPlayer& owner);
 	const ChessPlayer* get_owner();
+	void mark_as_moved() noexcept;
+	bool get_is_moved() const noexcept;
 	virtual void print() const noexcept;
 	virtual std::string to_string_by_player();
 	virtual std::string to_string();

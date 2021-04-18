@@ -19,6 +19,7 @@ bool Pawn::can_capture_piece_at(int posX, int posY) {
 
 bool Pawn::is_valid_movement(int initialPosX, int initialPosY, int finalPosX, int finalPosY, bool isFinalPosTaken) {
 	return (finalPosX == initialPosX && abs(finalPosY - initialPosY) == 1) ||
+		(!this->get_is_moved() && finalPosX == initialPosX && abs(finalPosY - initialPosY) ==  2) ||
 		(isFinalPosTaken && abs(finalPosX - initialPosX) == 1 && abs(finalPosY - initialPosY) == 1);
 }
 

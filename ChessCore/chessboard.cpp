@@ -154,6 +154,8 @@ bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int fi
 		throw MovementGeneratesCheckException();
 	}
 
+	this->pieces[finalX][finalY]->mark_as_moved();
+
 	movements.push_back(std::tuple<const ChessPlayer*, int, int, int, int>(this->playerA, initialX, initialY, finalX, finalY));
 
 	return result;
@@ -180,6 +182,8 @@ bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int fi
 
 		throw MovementGeneratesCheckException();
 	}
+
+	this->pieces[finalX][finalY]->mark_as_moved();
 
 	movements.push_back(std::tuple<const ChessPlayer*, int, int, int, int>(this->playerB, initialX, initialY, finalX, finalY));
 

@@ -13,6 +13,14 @@ void ChessPiece::print() const noexcept {
 	std::cout << "I am a piece\n";
 }
 
+bool ChessPiece::get_is_moved() const noexcept {
+	return this->is_moved;
+}
+
+void ChessPiece::mark_as_moved() noexcept {
+	this->is_moved = true;
+}
+
 std::string ChessPiece::to_string_by_player() {
 	return this->to_string() + this->owner->getNameTag();
 }
