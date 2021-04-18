@@ -153,19 +153,25 @@ void ChessBoard::print() const noexcept {
 }
 
 bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int finalY) {
+	auto pieceAtFinalPos = this->pieces[finalX][finalY];
 	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY, this->playerA);
-
-	if (this->is_player_a_in_check()) {
-		// Revert movement
-		this->pieces[initialX][initialY] = this->pieces[finalX][finalY];
-		this->pieces[finalX][finalY] = nullptr;
-
-		throw MovementGeneratesCheckException();
-	}
 
 	if (result && this->pieces[finalX][finalY]->is_king()) {
 		this->kingAPos[0] = finalX;
 		this->kingAPos[1] = finalY;
+	}
+
+	if (this->is_player_a_in_check()) {
+		// Revert movement
+		this->pieces[initialX][initialY] = this->pieces[finalX][finalY];
+		this->pieces[finalX][finalY] = pieceAtFinalPos;
+
+		if (this->pieces[initialX][initialY]->is_king()) {
+			this->kingAPos[0] = initialX;
+			this->kingAPos[1] = initialY;
+		}
+
+		throw MovementGeneratesCheckException();
 	}
 
 	movements.push_back(std::tuple<const ChessPlayer*, int, int, int, int>(this->playerA, initialX, initialY, finalX, finalY));
@@ -174,19 +180,25 @@ bool ChessBoard::movePlayerAPiece(int initialX, int initialY, int finalX, int fi
 }
 
 bool ChessBoard::movePlayerBPiece(int initialX, int initialY, int finalX, int finalY) {
+	auto pieceAtFinalPos = this->pieces[finalX][finalY];
 	bool result = this->movePlayerPiece(initialX, initialY, finalX, finalY, this->playerB);
-
-	if (this->is_player_b_in_check()) {
-		// Revert movement
-		this->pieces[initialX][initialY] = this->pieces[finalX][finalY];
-		this->pieces[finalX][finalY] = nullptr;
-
-		throw MovementGeneratesCheckException();
-	}
 
 	if (result && this->pieces[finalX][finalY]->is_king()) {
 		this->kingBPos[0] = finalX;
 		this->kingBPos[1] = finalY;
+	}
+
+	if (this->is_player_b_in_check()) {
+		// Revert movement
+		this->pieces[initialX][initialY] = this->pieces[finalX][finalY];
+		this->pieces[finalX][finalY] = pieceAtFinalPos;
+
+		if (this->pieces[initialX][initialY]->is_king()) {
+			this->kingBPos[0] = initialX;
+			this->kingBPos[1] = initialY;
+		}
+
+		throw MovementGeneratesCheckException();
 	}
 
 	movements.push_back(std::tuple<const ChessPlayer*, int, int, int, int>(this->playerB, initialX, initialY, finalX, finalY));
