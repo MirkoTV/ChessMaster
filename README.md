@@ -14,6 +14,12 @@ This is an small chess play console application that permits 2 users to play and
 
 Just clone the repository and open/run it with visual studio 2019. 
 
+## Pending Work
+
+- No bonus staff (Graphic UI, linux support)
+- Display movements register (We are saving them internally but not showing them)
+- Good amount of code reuse related to movePlayerPiece main method
+
 ## About
 
 Name: Mirko Terrazas
