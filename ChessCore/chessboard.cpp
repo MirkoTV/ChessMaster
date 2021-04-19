@@ -266,10 +266,10 @@ bool ChessBoard::is_valid_movement(int initialX, int initialY, int finalX, int f
 
 	if (!pieceToMove->is_valid_movement(initialX, initialY, finalX, finalY, isNewPositionTaken)) return false;
 
-	if (pieceToMove->is_pawn() &&
+	if (pieceToMove->can_move_forward_only() &&
 		!ChessBoard::is_forward_movement(pieceToMove, initialX, initialY, finalX, finalY)) return false;
 
-	if (!pieceToMove->is_knight() 
+	if (!pieceToMove->can_jump() 
 		&& ChessBoard::existsPieceInTheMiddle(initialX, initialY, finalX, finalY)) return false;
 
 	return true;

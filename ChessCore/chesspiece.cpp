@@ -33,10 +33,10 @@ bool ChessPiece::is_king() const noexcept {
 	return false;
 }
 
-bool ChessPiece::is_pawn() const noexcept {
+bool ChessPiece::can_move_forward_only() const noexcept {
 	return false;
 }
 
-bool ChessPiece::is_knight() const noexcept {
+bool ChessPiece::can_jump() const noexcept {
 	return false;
 }

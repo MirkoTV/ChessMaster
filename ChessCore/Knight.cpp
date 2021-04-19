@@ -13,7 +13,7 @@ std::string Knight::to_string() {
 	return "KN";
 }
 
-bool Knight::is_knight() const noexcept {
+bool Knight::can_jump() const noexcept {
 	return true;
 }
 
