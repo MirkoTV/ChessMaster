@@ -17,7 +17,9 @@ Just clone the repository and open/run it with visual studio 2019.
 ## About
 
 Name: Mirko Terrazas
+
 Presetation Date: 15/10/2020
 
-*ChessMaster DLL* : Console Application to run main dll
-*ChessCore DLL* : Main dll with the core functionallity
+ChessMaster DLL : Console Application to run main dll
+
+ChessCore DLL: Main dll with the core functionallity
