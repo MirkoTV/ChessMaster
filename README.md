@@ -24,7 +24,7 @@ Just clone the repository and open/run it with visual studio 2019.
 
 Name: Mirko Terrazas
 
-Presetation Date: 15/10/2020
+Presetation Date: 19/04/2021
 
 ChessMaster DLL : Console Application to run main dll
 
